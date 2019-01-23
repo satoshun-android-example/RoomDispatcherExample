@@ -2,7 +2,15 @@ package com.github.satoshun.example.sample
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,7 +26,7 @@ class DatabaseModule {
   }
 
   @Provides
-  fun provideAuthorDao(database: MyDatabase): AuthorDao {
+  fun provideAuthorDao(database: MyDatabase): AuthorDispatcher {
     return database.authorDao()
   }
 
@@ -37,7 +45,7 @@ class DatabaseModule {
   version = 1
 )
 abstract class MyDatabase : RoomDatabase() {
-  abstract fun authorDao(): AuthorDao
+  abstract fun authorDao(): AuthorDispatcher
 }
 
 sealed class AuthorEvent
@@ -62,21 +70,20 @@ data class MappedAuthor(
 )
 
 @Dao
-interface AuthorDao : AuthorStore {
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun update(author: Author1)
-
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun update(author: Author2)
+interface AuthorDispatcher : AuthorStore {
+  @Insert(onConflict = OnConflictStrategy.REPLACE) fun dispatch(author: Author1)
+  @Insert(onConflict = OnConflictStrategy.REPLACE) fun dispatch(author: Author2)
 
   @Query("select * FROM author1 WHERE _id = 0")
   override fun author(): LiveData<Author1?>
 
-  @Query("""
+  @Query(
+    """
     select author1.name as name1, author2.name as name2
     FROM author1
      INNER JOIN author2
     WHERE author1._id = 0 AND author2._id = 0
-    """)
-  fun mappedAuthor(): LiveData<MappedAuthor?>
+    """
+  )
+  override fun mappedAuthor(): LiveData<MappedAuthor?>
 }

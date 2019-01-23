@@ -18,6 +18,12 @@ class MainActivity : BaseActivity() {
 
     store.author().observe(this, Observer {
       binding.title.text = it?.name.toString()
+      binding.age.text = it?.age.toString()
+    })
+
+    store.mappedAuthor().observe(this, Observer {
+      binding.name1.text = it?.name1.toString()
+      binding.name2.text = it?.name2.toString()
     })
 
     binding.move.setOnClickListener {
