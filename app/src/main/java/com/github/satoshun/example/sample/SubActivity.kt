@@ -5,7 +5,7 @@ import javax.inject.Inject
 import kotlin.concurrent.thread
 
 class SubActivity : BaseActivity() {
-  @Inject lateinit var authorDao: AuthorDao
+  @Inject lateinit var actionCreator: AuthorActionCreator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -14,7 +14,8 @@ class SubActivity : BaseActivity() {
 
     thread {
       Thread.sleep(3000)
-      authorDao.update(Author(name = "hoge", age = 10))
+      actionCreator.updateAuthor(name = "hoge", age = 10)
+
       runOnUiThread {
         finish()
       }

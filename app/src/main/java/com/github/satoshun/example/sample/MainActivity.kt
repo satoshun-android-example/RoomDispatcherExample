@@ -8,7 +8,7 @@ import com.github.satoshun.example.sample.databinding.MainActBinding
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
-  @Inject lateinit var authorDao: AuthorDao
+  @Inject lateinit var store: AuthorStore
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class MainActivity : BaseActivity() {
 
     (application as App).appComponent.inject(this)
 
-    authorDao.author().observe(this, Observer {
+    store.author().observe(this, Observer {
       binding.title.text = it?.name.toString()
     })
 
