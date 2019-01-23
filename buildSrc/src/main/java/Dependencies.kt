@@ -1,6 +1,6 @@
 object Vers {
   val compile_sdk = 28
-  val min_sdk = 28
+  val min_sdk = 21
   val target_sdk = 28
 
   val kotlin = "1.3.11"
@@ -40,6 +40,12 @@ object Libs {
   val dagger_android = "com.google.dagger:dagger-android:$vdagger"
   val dagger_android_processor = "com.google.dagger:dagger-android-processor:$vdagger"
   val dagger_android_support = "com.google.dagger:dagger-android-support:$vdagger"
+
+  private const val VROOM = "2.1.0-alpha03"
+  const val ROOM_COMMON = "androidx.room:room-common:$VROOM"
+  const val ROOM_RUNTIME = "androidx.room:room-runtime:$VROOM"
+  const val ROOM_COROUTINES = "androidx.room:room-coroutines:$VROOM"
+  const val ROOM_COMPILER = "androidx.room:room-compiler:$VROOM"
 
   val junit = "junit:junit:4.12"
   val truth = "com.google.truth:truth:0.42"

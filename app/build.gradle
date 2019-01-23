@@ -42,8 +42,6 @@ android {
 
   lintOptions {
     checkReleaseBuilds false
-    // Or, if you prefer, you can continue to check for errors in release builds,
-    // but continue the build even when errors are found:
     abortOnError false
   }
 }
@@ -62,10 +60,12 @@ dependencies {
 
   implementation Libs.dagger
   kapt Libs.dagger_processor
-  implementation Libs.dagger_android
-//  implementation Libs.dagger_android_support
-  kapt Libs.dagger_android_processor
 
   implementation Libs.fragmentx
   implementation Libs.activityx
+
+  implementation Libs.ROOM_RUNTIME
+  implementation Libs.ROOM_COMMON
+  implementation Libs.ROOM_COROUTINES
+  kapt Libs.ROOM_COMPILER
 }

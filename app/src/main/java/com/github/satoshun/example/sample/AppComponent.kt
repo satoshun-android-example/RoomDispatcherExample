@@ -1,15 +1,24 @@
 package com.github.satoshun.example.sample
 
+import android.content.Context
+import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-  modules = [
-    AndroidInjectionModule::class,
-    MainModule::class
-  ]
+  modules = [DatabaseModule::class]
 )
-interface AppComponent : AndroidInjector<App>
+interface AppComponent {
+  @Component.Builder
+  interface Builder {
+    @BindsInstance
+    fun applicationContext(context: Context): AppComponent.Builder
+
+    fun build(): AppComponent
+  }
+
+  fun inject(activity: MainActivity)
+  fun inject(activity: SubActivity)
+}
+
