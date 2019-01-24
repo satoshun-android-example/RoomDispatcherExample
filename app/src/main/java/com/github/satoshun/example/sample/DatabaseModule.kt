@@ -48,21 +48,21 @@ abstract class MyDatabase : RoomDatabase() {
   abstract fun authorDao(): AuthorDispatcher
 }
 
-sealed class AuthorEvent
+sealed class AuthorAction
 
 @Entity(tableName = "author1")
 data class Author1(
   @PrimaryKey val _id: Long = 0, // always 0
   val name: String,
   val age: Int
-) : AuthorEvent()
+) : AuthorAction()
 
 @Entity(tableName = "author2")
 data class Author2(
   @PrimaryKey val _id: Long = 0, // always 0
   val name: String,
   val age: Int
-) : AuthorEvent()
+) : AuthorAction()
 
 data class MappedAuthor(
   val name1: String,

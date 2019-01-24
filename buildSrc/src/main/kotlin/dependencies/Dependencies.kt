@@ -7,7 +7,7 @@ const val TARGET_SDK = 28
 private const val VKOTLIN = "1.3.20"
 private const val VCOUROUTINE = "1.1.0"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.4.0-beta01"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.5.0-alpha01"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val VERSIONS_PLUGIN = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
 
@@ -53,4 +53,4 @@ const val TEST_RUNNER = "androidx.test:runner:1.1.0"
 const val TEST_JUNIT_RULES = "androidx.test.ext:junit:1.0.0"
 const val MOCKITO_KOTLIN = "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
 const val ESPRESSO = "androidx.test.espresso:espresso-core:3.1.0"
-const val ROBOLECTRIC = "org.robolectric:robolectric:4.0"
+const val ROBOLECTRIC = "org.robolectric:robolectric:4.1"
